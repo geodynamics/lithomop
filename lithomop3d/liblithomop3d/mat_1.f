@@ -4,9 +4,8 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c
 c                             Charles A. Williams
 c                       Rensselaer Polytechnic Institute
-c                        (C) 2004  All Rights Reserved
+c                        (C) 2005  All Rights Reserved
 c
-c  Copyright 2004 Rensselaer Polytechnic Institute.
 c  All worldwide rights reserved.  A license to use, copy, modify and
 c  distribute this software for non-commercial research purposes only
 c  is hereby granted, provided that this copyright notice and
@@ -145,7 +144,7 @@ c
       fac=e/(pr2*pr3)
       dd=pr1*fac
       od=pr*fac
-      ss=pr3*fac
+      ss=half*pr3*fac
       do i=1,3
         dmat(iddmat(i,i))=dd
         dmat(iddmat(i+3,i+3))=ss
@@ -383,7 +382,7 @@ c
 c       
 
 c version
-c $Id: mat_1.f,v 1.15 2005/02/24 00:07:03 willic3 Exp $
+c $Id: mat_1.f,v 1.15.2.1 2005/04/08 20:38:01 willic3 Exp $
 
 c Generated automatically by Fortran77Mill on Tue May 18 14:18:50 2004
 

@@ -4,9 +4,8 @@ c ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 c
 c                             Charles A. Williams
 c                       Rensselaer Polytechnic Institute
-c                        (C) 2004  All Rights Reserved
+c                        (C) 2005  All Rights Reserved
 c
-c  Copyright 2004 Rensselaer Polytechnic Institute.
 c  All worldwide rights reserved.  A license to use, copy, modify and
 c  distribute this software for non-commercial research purposes only
 c  is hereby granted, provided that this copyright notice and
@@ -150,7 +149,7 @@ c
       fac=e/(pr2*pr3)
       dd=pr1*fac
       od=pr*fac
-      ss=pr3*fac
+      ss=half*pr3*fac
       do i=1,3
         dmat(iddmat(i,i))=dd
         dmat(iddmat(i+3,i+3))=ss
@@ -261,7 +260,7 @@ c
       dmat(iddmat(1,2))=f1-f2
       dmat(iddmat(1,3))=dmat(iddmat(1,2))
       dmat(iddmat(2,3))=dmat(iddmat(1,2))
-      dmat(iddmat(4,4))=three*f2
+      dmat(iddmat(4,4))=half*three*f2
       dmat(iddmat(5,5))=dmat(iddmat(4,4))
       dmat(iddmat(6,6))=dmat(iddmat(4,4))
 cdebug      write(6,*) "dmat:",(dmat(idb),idb=1,nddmat)
@@ -310,6 +309,7 @@ c
       integer i
       double precision e,pr,vis,rmu,f1,f2,emean,smean,eet,stau,smeantp
       double precision sdev,sdevtp,smean0,sdev0,fac1,fac2,rvis
+      double precision eett(6)
 c
 c...  included variable definitions
 c
@@ -319,6 +319,10 @@ c
 c
 cdebug      write(6,*) "Hello from td_strs_5!"
 c
+      call dcopy(nstr,ee,ione,eett,ione)
+      eett(4)=half*eett(4)
+      eett(5)=half*eett(5)
+      eett(6)=half*eett(6)
       e=prop(2)
       pr=prop(3)
       vis=prop(4)
@@ -338,13 +342,13 @@ cdebug      write(6,*) "smean0,smeantp,emean:"
 cdebug      write(6,*) e,pr,vis,rmu,tmax,deltp,alfap,f1,f2,emean,smean,smean0,
 cdebug     & smeantp,emean
       do i=1,nstr
-        eet=ee(i)-diag(i)*emean-state(i,3)
+        eet=eett(i)-diag(i)*emean-state(i,3)
         sdevtp=state(i,1)-diag(i)*smeantp
         sdev0=state0(i)-diag(i)*smean0
         sdev=f2*(eet-f1*sdevtp+fac2*sdev0)
         dstate(i,1)=sdev+diag(i)*(smean+smean0)
         stau=(one-alfap)*sdevtp+alfap*sdev
-        dstate(i,3)=half*deltp*stau*rvis
+        dstate(i,3)=fac1*stau
         dstate(i,2)=ee(i)
 cdebug        write(6,*) "i,ee,eet,sdevtp,sdev0,sdev,ds1,ds2,ds3,s1,s2,s3,",
 cdebug     &   "stau:",
@@ -443,7 +447,7 @@ c
 c       
 
 c version
-c $Id: mat_5.f,v 1.7 2005/02/24 00:14:45 willic3 Exp $
+c $Id: mat_5.f,v 1.7.2.1 2005/04/08 20:38:01 willic3 Exp $
 
 c Generated automatically by Fortran77Mill on Tue May 18 14:18:50 2004
 
