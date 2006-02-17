@@ -35,6 +35,13 @@
 # main
 
 if __name__ == "__main__":
+    
+    # re-create the PYTHONPATH at 'configure' time
+    import sys
+    path = '@PYTHONPATH@'.split(':')
+    for dir in path:
+        sys.path.insert(1, dir)
+    
     from lithomop3d.Application import Application
 
     app = Application()

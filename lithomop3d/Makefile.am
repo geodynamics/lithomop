@@ -4,7 +4,7 @@
 SUBDIRS = liblithomop3d module
 
 # lithomop3d
-nobase_python_PYTHON = \
+nobase_pyexec_PYTHON = \
 	lithomop3d/Application.py \
 	lithomop3d/ElementTypeDef.py \
 	lithomop3d/__init__.py \
@@ -19,11 +19,15 @@ nobase_python_PYTHON = \
 	lithomop3d/Materials.py
 
 # applications
-dist_bin_SCRIPTS = \
-	applications/lithomop3dapp.py
+nodist_bin_SCRIPTS = lithomop3dapp.py
+do_subst = sed -e 's|[@]PYTHONPATH[@]|$(PYTHONPATH)|g'
+lithomop3dapp.py: $(srcdir)/applications/lithomop3dapp.py
+	$(do_subst) < $(srcdir)/applications/lithomop3dapp.py > $@ || (rm -f $@ && exit 1)
+CLEANFILES = $(nodist_bin_SCRIPTS)
+EXTRA_DIST = applications/lithomop3dapp.py
 
 # examples
-EXTRA_DIST = \
+EXTRA_DIST += \
 	examples/bm1/bm1.bc \
 	examples/bm1/bm1.connect \
 	examples/bm1/bm1.coord \

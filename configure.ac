@@ -35,6 +35,8 @@ AC_PROG_LIBTOOL
 
 # Checks for Python modules and packages.
 CIT_PATH_PYTHIA([0.8], [mpi])
+PYTHONPATH="${pyexecdir}${PYTHONPATH:+:${PYTHONPATH}}"; export PYTHONPATH
+AC_SUBST([PYTHONPATH])
 
 # Set the language for MPI tests.
 AC_LANG(C++)
