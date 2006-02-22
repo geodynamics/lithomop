@@ -41,10 +41,8 @@ lithomop3dmodule_la_SOURCES = \
 lithomop3dmodule_la_LDFLAGS = -module
 lithomop3dmodule_la_LIBADD = \
 	$(top_builddir)/lithomop3d/liblithomop3d/liblithomop3d.la \
-	-L$(PETSC_LIB_DIR) \
-	$(PETSC_FORTRAN_LIB_BASIC) \
-	$(PETSC_LIB_BASIC) \
-	$(PETSC_EXTERNAL_LIB_BASIC) \
+	$(PETSC_FORTRAN_LIB) \
+	$(PETSC_LIB) \
 	$(FCLIBS) \
 	-ljournal
 

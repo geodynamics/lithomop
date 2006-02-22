@@ -20,7 +20,9 @@ nobase_pyexec_PYTHON = \
 
 # applications
 nodist_bin_SCRIPTS = lithomop3dapp.py
-do_subst = sed -e 's|[@]PYTHONPATH[@]|$(PYTHONPATH)|g'
+do_subst = sed \
+	-e 's|[@]PYTHON[@]|$(PYTHON)|g' \
+	-e 's|[@]PYTHONPATH[@]|$(PYTHONPATH)|g'
 lithomop3dapp.py: $(srcdir)/applications/lithomop3dapp.py
 	$(do_subst) < $(srcdir)/applications/lithomop3dapp.py > $@ || (rm -f $@ && exit 1)
 CLEANFILES = $(nodist_bin_SCRIPTS)

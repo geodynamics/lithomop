@@ -247,9 +247,7 @@ liblithomop3d_la_SOURCES = \
 	includes/update_ext.inc
 liblithomop3d_la_LDFLAGS =
 liblithomop3d_la_LIBADD = \
-	-L$(PETSC_LIB_DIR) \
-	$(PETSC_FORTRAN_LIB_BASIC) \
-	$(PETSC_LIB_BASIC) \
-	$(PETSC_EXTERNAL_LIB_BASIC)
+	$(PETSC_FORTRAN_LIB) \
+	$(PETSC_LIB)
 
 ## end of Makefile.am
