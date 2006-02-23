@@ -13,10 +13,16 @@ AM_INIT_AUTOMAKE([foreign])
 # 'configure' options
 AC_ARG_VAR(PYTHON, [Python interpreter])
 AC_ARG_VAR(PYTHONPATH, [Python module search path])
+AC_ARG_WITH([embedding],
+    [AC_HELP_STRING([--with-embedding],
+        [embed Python with Lithomop in a single executable @<:@default=yes@:>@])],
+    [want_embedding="$withval"],
+    [want_embedding=yes])
+AM_CONDITIONAL([COND_EMBEDDING], [test "$want_embedding" = yes])
 
 # Checks for programs.
 AM_PATH_PYTHON([2.3])
-CIT_PYTHON_INCDIR
+CIT_PYTHON_SYSCONFIG
 CIT_PATH_PETSC([2.3])
 CIT_PROG_MPICXX
 # this is not portable

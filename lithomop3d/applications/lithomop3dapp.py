@@ -1,4 +1,4 @@
-#!@PYTHON@
+#!@INTERPRETER@
 #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -39,8 +39,18 @@ if __name__ == "__main__":
     # re-create the PYTHONPATH at 'configure' time
     import sys
     path = '@PYTHONPATH@'.split(':')
+    path.reverse()
     for dir in path:
-        sys.path.insert(1, dir)
+        if dir:
+            sys.path.insert(1, dir)
+
+    # if we are embedding, insert the extension module in the
+    # 'lithomop3d' package
+    try:
+        import builtin_lithomop3d
+        sys.modules['lithomop3d.lithomop3d'] = builtin_lithomop3d
+    except ImportError:
+        pass
     
     from lithomop3d.Application import Application
 
