@@ -408,7 +408,7 @@ PyObject * pylithomop3d_elastc(PyObject *, PyObject *args)
 	   strlen(asciiOutputFile),           // String lengths
 	   strlen(plotOutputFile),
 	   strlen(ucdOutputRoot),
-	   strlen(errorstring));
+	   sizeof(errorstring));
 
   if(0 != exceptionhandler(errorcode, errorstring)) {
     return 0;
