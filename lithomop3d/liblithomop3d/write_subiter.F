@@ -43,18 +43,7 @@ c
 c...  local variables
 c
       if(idout.gt.0) then
-c
-c...  The current setup uses autoconf to determine whether the fortran
-c     compiler supports access="append", position="append", or neither.
-c     If neither is supported an error is returned.
-c
-#if defined FORTRAN_ACCESS_APPEND
-        open(kw,file=ofile,status="old",access="append")
-#elif defined FORTRAN_POSITION_APPEND
-        open(kw,file=ofile,status="old",position="append")
-#else
-#error "Cannot determine method for appending to Fortran files!"
-#endif
+        call open_append_stop(kw,ofile,"old","","write_subiter")
         write(kw,700) nprevdflag
         close(kw)
       end if

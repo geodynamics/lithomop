@@ -125,6 +125,7 @@ sources = \
 	nchar.f \
 	nfind.f \
 	nnblnk.f \
+	open_append.F \
 	open_ucd.F \
 	plinhex.f \
 	plinpyr.f \
@@ -189,6 +190,7 @@ sources = \
 	td_strs_cmp_ss.f \
 	td_strs_mat_cmp_ss.F \
 	transp.f \
+	try_binio.F \
 	unlock.f \
 	update_state_cmp.f \
 	update_state_drv.f \

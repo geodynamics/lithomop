@@ -40,7 +40,16 @@ class Application(BaseScript):
 #        from time import clock as now
 #        start = now()
         lm3dsetup = self.inventory.setup
-        lm3dsetup.initialize(self.inventory.scanner)
+        scanner = self.inventory.scanner
+        try:
+            lm3dsetup.initialize(scanner)
+        except scanner.CanNotOpenInputOutputFilesError, error:
+            import sys
+            print >> sys.stderr
+            error.report(sys.stderr)
+            print >> sys.stderr
+            print >> sys.stderr, "%s: %s" % (error.__class__.__name__, error)
+            sys.exit(1)
         lm3dsetup.read()
         lm3dsetup.numberequations()
         lm3dsetup.sortmesh()
