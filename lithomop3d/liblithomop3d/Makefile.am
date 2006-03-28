@@ -222,6 +222,7 @@ sources = \
 	write_ucd_node_vals.F \
 	write_wink.F \
 	write_winkx.F \
+	includes/binio.h \
 	includes/elas_matinit_ext.inc \
 	includes/elas_strs_ext.inc \
 	includes/elmlbl_def.inc \
