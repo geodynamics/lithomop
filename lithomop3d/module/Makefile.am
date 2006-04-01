@@ -23,12 +23,11 @@ lithomop3dmodule_la_LIBADD = \
 	$(top_builddir)/lithomop3d/liblithomop3d/liblithomop3d.la \
 	$(PETSC_FORTRAN_LIB) \
 	$(PETSC_LIB) \
+	$(PETSC_CXX_LIB) \
 	$(FCLIBS) \
 	-ljournal
 
-CXX = $(MPICXX)
-CXXLD = @CXX@
-INCLUDES = $(PETSC_INCLUDE) -I$(PYTHON_INCDIR) $(MPIINCLUDES)
+INCLUDES = $(PETSC_INCLUDE) $(PETSC_CXX_INCLUDE) -I$(PYTHON_INCDIR)
 sources = \
 	array.cc \
 	array.h \

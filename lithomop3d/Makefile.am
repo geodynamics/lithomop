@@ -37,8 +37,7 @@ pylithomop3d$(EXEEXT): $(pylithomop3d_OBJECTS) $(pylithomop3d_DEPENDENCIES)
 	$(CXXLINK) $(PYTHON_LDFLAGS) $(PYTHON_LINKFORSHARED) \
 		$(pylithomop3d_LDFLAGS) $(pylithomop3d_OBJECTS) $(pylithomop3d_LDADD) \
 		$(PYTHON_BLDLIBRARY) \
-		$(PETSC_FORTRAN_LIB) $(PETSC_LIB) \
-		$(MPILIBS) \
+		$(PETSC_FORTRAN_LIB) $(PETSC_LIB) $(PETSC_CXX_LIB) \
 		$(FCLIBS) \
 		-ljournal \
 		$(PYTHON_LIBS) $(PYTHON_MODLIBS) $(PYTHON_SYSLIBS) \
