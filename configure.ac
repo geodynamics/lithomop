@@ -64,6 +64,7 @@ CIT_FC_STREAM_IO
 
 AC_CONFIG_FILES([Makefile
                  lithomop3d/Makefile
+                 lithomop3d/examples/Makefile
                  lithomop3d/liblithomop3d/Makefile
                  lithomop3d/module/Makefile])
 AC_OUTPUT
