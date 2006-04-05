@@ -96,6 +96,7 @@ EXTRA_DIST = \
 	linhex/bm1a/bm1a.prop \
 	linhex/bm1a/bm1a.statevar \
 	linhex/bm1a/bm1a.time \
+	linhex/bm1a/test.sh \
 	linhex/bm1/bm1.bc \
 	linhex/bm1/bm1.connect \
 	linhex/bm1/bm1.coord \
@@ -105,9 +106,11 @@ EXTRA_DIST = \
 	linhex/bm1/bm1.prop \
 	linhex/bm1/bm1.statevar \
 	linhex/bm1/bm1.time \
+	linhex/bm1/test.sh \
 	linhex/bm2a/bm2a.bc \
 	linhex/bm2a/bm2a.keyval \
 	linhex/bm2a/bm2a.time \
+	linhex/bm2a/test.sh \
 	linhex/patchtest/pt10.bc \
 	linhex/patchtest/pt11.bc \
 	linhex/patchtest/pt12.bc \
@@ -180,6 +183,7 @@ EXTRA_DIST = \
 	linhex/ps1/README \
 	linhex/ps1/README.elas-tests \
 	linhex/ps1/README.vis-tests \
+	linhex/ps1/test.sh.in \
 	linhex/ps1/vis-test10/ps1.keyval \
 	linhex/ps1/vis-test10/ps1.prop \
 	linhex/ps1/vis-test10/ps1.time \
@@ -226,6 +230,8 @@ EXTRA_DIST = \
 	linhex/slip1/slip1.statevar \
 	linhex/slip1/slip1.time \
 	linhex/slip1/slip1.winkx \
+	linhex/slip1/test.sh \
+	linhex/timeslip1/test.sh \
 	linhex/timeslip1/timeslip1.bc \
 	linhex/timeslip1/timeslip1.connect \
 	linhex/timeslip1/timeslip1.coord \
@@ -246,6 +252,7 @@ EXTRA_DIST = \
 	lintet/bm1a/bm1a.prop \
 	lintet/bm1a/bm1a.statevar \
 	lintet/bm1a/bm1a.time \
+	lintet/bm1a/test.sh \
 	lintet/bm1b/bm1b.bc \
 	lintet/bm1b/bm1b.connect \
 	lintet/bm1b/bm1b.coord \
@@ -255,9 +262,11 @@ EXTRA_DIST = \
 	lintet/bm1b/bm1b.prop \
 	lintet/bm1b/bm1b.statevar \
 	lintet/bm1b/bm1b.time \
+	lintet/bm1b/test.sh \
 	lintet/bm2a/bm2a.bc \
 	lintet/bm2a/bm2a.keyval \
 	lintet/bm2a/bm2a.time \
+	lintet/bm2a/test.sh \
 	lintet/bm5/bm5.bc \
 	lintet/bm5/bm5.connect \
 	lintet/bm5/bm5.coord \
@@ -267,6 +276,7 @@ EXTRA_DIST = \
 	lintet/bm5/bm5.split \
 	lintet/bm5/bm5.statevar \
 	lintet/bm5/bm5.time \
+	lintet/bm5/test.sh \
 	lintet/patchtest/pt10.bc \
 	lintet/patchtest/pt11.bc \
 	lintet/patchtest/pt12.bc \
@@ -303,6 +313,7 @@ EXTRA_DIST = \
 	quadhex/bm1a/bm1a.prop \
 	quadhex/bm1a/bm1a.statevar \
 	quadhex/bm1a/bm1a.time \
+	quadhex/bm1a/test.sh \
 	quadhex/patchtest/pt10.bc \
 	quadhex/patchtest/pt11.bc \
 	quadhex/patchtest/pt12.bc \
@@ -342,6 +353,7 @@ EXTRA_DIST = \
 	quadtet/bm1a/bm1a.prop \
 	quadtet/bm1a/bm1a.statevar \
 	quadtet/bm1a/bm1a.time \
+	quadtet/bm1a/test.sh \
 	quadtet/patchtest/pt10.bc \
 	quadtet/patchtest/pt11.bc \
 	quadtet/patchtest/pt12.bc \
