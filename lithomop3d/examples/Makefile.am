@@ -32,7 +32,8 @@ CLEANFILES = \
 	*/*/*.ascii \
 	*/*/*.mesh.* \
 	*/*/*.gmesh.* \
-	$(linhex_ps1_tests)
+	$(linhex_ps1_tests) \
+	$(top_srcdir)/lithomop3d/lithomop3d/*.pyc $(top_srcdir)/lithomop3d/lithomop3d/MaterialModel/*.pyc
 
 $(linhex_ps1_tests): linhex/ps1/test.sh.in
 	fileRoot=`echo $@ | sed -e "s|\.sh|/ps1|"`; \
