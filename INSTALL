@@ -1,6 +1,127 @@
 Installation Instructions
 *************************
 
+System Requirements
+===================
+
+Lithomop3d should work on any UN*X system.  It requires the following
+language tools:
+
+* A Fortran compiler.  Both older Fortran-77 and modern Fortran-9x
+  compilers will work.
+
+* A C compiler.
+
+* A C++ compiler.
+
+* Python 2.3 or later; see <http://www.python.org/>.
+
+If you are using a modern UN*X system, there is a good chance that all
+of the above tools are already installed.
+
+In addition, Lithomop3d v0.7.2 requires the following software
+packages:
+
+* (Optional) An MPI library.  Lithomop3d itself is a serial code which
+  does not use MPI.  However, both PETSc and Pythia (detailed below)
+  require MPI by default.  A popular choice is MPICH:
+
+    <http://www-unix.mcs.anl.gov/mpi/mpich>
+
+  MPICH is recommended by the PETSc installation instructions; in
+  fact, PETSc's `configure.py' can automatically download and install
+  MPICH for you (`--download-mpich=yes').
+
+  If you decide to skip installing MPI, you will have to specially
+  configure both PETSc and Pythia not to use MPI.
+
+* PETSc version 2.3, available from the MCS web site at Argonne
+  National Laboratory:
+
+    <http://www-unix.mcs.anl.gov/petsc/petsc-2>
+
+  If you decide not to install MPI, give PETSc's `configure.py' the
+  `--with-mpi=0' option.  See the PETSc installation instructions for
+  details.
+
+* Pythia version 0.8.  The easiest way to install Pythia is to
+  download the GNU-style `pythia-0.8.tar.gz' source package from the
+  CIG web site under `Software -> Software Packages -> Pythia':
+
+    <http://www.geodynamics.org/cig/software/packages/pythia>
+
+  If you decide not to install MPI, give Pythia's `configure' the
+  `--without-mpi' option.  General information about Pythia can be
+  found at the Pyre project page:
+
+    <http://www.cacr.caltech.edu/projects/pyre>
+
+Note that releases of both PETSc and Pythia are generally not
+backwards-compatible with prior versions.  Therefore, you must install
+PETSc v2.3 and Pythia v0.8 specifically; future versions of PETSc and
+Pythia would not be expected to work with Lithomop3d v0.7.2.
+
+Installing Lithomop3d
+=====================
+
+To install Lithomop3d, perform the following:
+
+   cd lithomop3d-0.7.2
+   ./configure
+   make
+   make install
+
+If you will be running `make install' as a non-root user, specify a
+prefix when running `configure'; e.g.,
+
+   ./configure --prefix=$HOME/lithomop3d
+
+After running 'make', you may optionally run `make quickcheck' to run
+a handful of the examples, or `make check' to run more of them
+(note that `check' takes a long time).
+
+More information about `configure' and the build system may be found
+under "Generic GNU Installation Instructions", below.
+
+Installation Examples
+=====================
+
+The following examples assume you already have the required language
+tools installed.
+
+* Installing with MPI.
+
+* Installing without MPI.
+
+Notes
+=====
+
+The Lithomop `configure' script depends heavily upon the PETSc
+configuration.  Once you have successfully installed PETSc, there is a
+good chance that everything else will "just work".
+
+By default, Lithomop embeds Python together with its C++ Python
+extension module and Fortran library code in a single, monolithic
+executable called `pylithomop3d', which functions as the interpreter
+for the top-level script `lithomop3dapp.py'.  If you prefer to extend
+Python rather than embedding it -- instead creating a dynamic
+extension module (`lithomop3dmodule.so') which is loaded by the
+standard Python interpreter -- give Lithomop's `configure' the
+`--without-embedding' option.  However, this is not guaranteed to work
+properly unless you either: (a) configured without MPI, or (b)
+installed MPI as a shared library.
+
+Lithomop3d v0.7.2 was tested with the following systems and
+configurations:
+
+OS           CPU      FC CC CXX PYTHON MPI options
+--------     -------  -- -- --- ------ --- -------
+linux-gnu    i686
+darwin7.9.0  powerpc
+
+Generic GNU Installation Instructions
+*************************************
+
 Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002, 2004 Free
 Software Foundation, Inc.
 
