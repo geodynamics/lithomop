@@ -66,6 +66,7 @@ Installing Lithomop3d
 
 To install Lithomop3d, perform the following:
 
+   gunzip -c lithomop3d-0.7.2.tar.gz | tar xf -
    cd lithomop3d-0.7.2
    ./configure
    make
@@ -76,9 +77,10 @@ prefix when running `configure'; e.g.,
 
    ./configure --prefix=$HOME/lithomop3d
 
-After running 'make', you may optionally run `make quickcheck' to run
-a handful of the examples, or `make check' to run more of them
-(note that `check' takes a long time).
+After installing, you may optionally run `make check' to run the
+examples.  However, `check' takes a long time; instead, you may
+perform `cd lithomop3d/examples; make quickcheck' to run only a
+handful of short examples.
 
 More information about `configure' and the build system may be found
 under "Generic GNU Installation Instructions", below.
@@ -91,7 +93,48 @@ tools installed.
 
 * Installing with MPI.
 
+    mkdir $HOME/cig
+    cd $HOME/cig
+    gunzip -c petsc-lite-2.3.1.tar.gz | tar xf -
+    cd petsc-2.3.1-p12
+    export PETSC_DIR=`pwd`
+    ./config/configure.py --download-mpich=1
+    make all
+    export PATH=$PETSC_DIR/externalpackages/mpich2-1.0.3/linux-gnu-c-real-debug/bin:$PATH
+    cd ..
+    gunzip -c pythia-0.8.tar.gz | tar xf -
+    cd pythia-0.8
+    ./configure --prefix=$HOME/cig
+    make
+    make install
+    cd ..
+    gunzip -c lithomop3d-0.7.2.tar.gz | tar xf -
+    cd lithomop3d-0.7.2
+    ./configure --prefix=$HOME/cig PYTHONPATH=$HOME/cig/lib/python2.3/site-packages
+    make
+    make install
+
 * Installing without MPI.
+
+    mkdir $HOME/cig
+    cd $HOME/cig
+    gunzip -c petsc-lite-2.3.1.tar.gz | tar xf -
+    cd petsc-2.3.1-p12
+    export PETSC_DIR=`pwd`
+    ./config/configure.py --with-mpi=0
+    make all
+    cd ..
+    gunzip -c pythia-0.8.tar.gz | tar xf -
+    cd pythia-0.8
+    ./configure --prefix=$HOME/cig --without-mpi
+    make
+    make install
+    cd ..
+    gunzip -c lithomop3d-0.7.2.tar.gz | tar xf -
+    cd lithomop3d-0.7.2
+    ./configure --prefix=$HOME/cig PYTHONPATH=$HOME/cig/lib/python2.3/site-packages
+    make
+    make install
 
 Notes
 =====
@@ -114,10 +157,14 @@ installed MPI as a shared library.
 Lithomop3d v0.7.2 was tested with the following systems and
 configurations:
 
-OS           CPU      FC CC CXX PYTHON MPI options
---------     -------  -- -- --- ------ --- -------
-linux-gnu    i686
-darwin7.9.0  powerpc
+OS           CPU      FC              CC         CXX        PYTHON  MPI              PETSc            notes
+-----------  -------  --------------  ---------  ---------  ------  ---------------  ---------------  -----
+linux-gnu    i686     g77-3.3.5       gcc-3.3.5  g++-3.3.5  2.3.5   mpich-1.2.6      petsc-2.3.0
+linux-gnu    i686     gfortran-4.0.2  gcc-4.0.2  g++-4.0.2  2.3.5   mpich2-1.0.2p1   petsc-2.3.0
+linux-gnu    i686     g77-3.3.5       gcc-4.0.2  g++-4.0.2  2.3.5   mpich-1.2.6 (*)  petsc-2.3.1-p12  (*) MPICH built with gcc-2.95.3
+linux-gnu    i686     g95-4.0.3       gcc-3.4.3  g++-3.4.3  2.3.4   (none)           petsc-2.3.1-p11  --without-embedding
+linux-gnu    x86_64   ifort-9.0       gcc-3.2.3  g++-3.2.3  2.4.1   mpichgm-1.2.6    petsc-2.3.1-p7
+darwin7.9.0  powerpc  g77-3.4.3       gcc-3.3    g++-3.3    2.3     (none)           petsc-2.3.1-p12
 
 Generic GNU Installation Instructions
 *************************************
