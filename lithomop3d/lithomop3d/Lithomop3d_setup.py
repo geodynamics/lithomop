@@ -99,9 +99,9 @@ class Lithomop3d_setup(Component):
         self.quadratureOrderInt = 0
         if lm3dscan.quadratureOrder == "Full":
             self.quadratureOrderInt = 1
-        elif quadratureOrder == "Reduced":
+        elif lm3dscan.quadratureOrder == "Reduced":
             self.quadratureOrderInt = 2
-        elif quadratureOrder == "Selective":
+        elif lm3dscan.quadratureOrder == "Selective":
             self.quadratureOrderInt = 3
         else:
             self.quadratureOrderInt = 1
