@@ -125,6 +125,7 @@ c
 cdebug          write(6,*) "ielf,ielg,l,dmat:",ielf,ielg,l
 cdebug          write(6,*) (dmat(idb,l,ielf),idb=1,nddmat)
         end do
+cdebug        write(6,*) "ielg:",ielg
         call formes_ss(
      &   x,numnp,iddmat,                                                ! global
      &   s,stemp,                                                       ! stiff
