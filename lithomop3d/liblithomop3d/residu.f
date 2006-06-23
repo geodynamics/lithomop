@@ -84,12 +84,15 @@ c
         en=dispvec(i)*bresid(i)
         tmp(3)=tmp(3)+en*en
       end do
+cdebug      write(6,*) "Initial bresid:",(bresid(idb),idb=1,neq)
+cdebug      call flush(6)
       if(nextflag.eq.izero) then
         call fill(bresid,zero,neq)
       else
         call dcopy(neq,bextern,ione,bresid,ione)
       end if
       call daxpy(neq,alpha,bintern,ione,bresid,ione)
+cdebug      write(6,*) "Final bresid:",(bresid(idb),idb=1,neq)
       tmp(1)=dnrm2(neq,dispvec,ione)
       tmp(2)=dnrm2(neq,bresid,ione)
       tmp(3)=sqrt(tmp(3))

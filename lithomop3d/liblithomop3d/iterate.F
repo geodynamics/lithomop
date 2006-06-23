@@ -225,6 +225,7 @@ ccc PETSc BLOCK
      &                               ierr)
         call VecCreateSeqWithArray(MPI_COMM_WORLD, neq, dispvec,sol,
      &                               ierr)
+cdebug        call VecView(rhs, PETSC_VIEWER_STDOUT_WORLD, ierr)
         call KSPCreate(MPI_COMM_WORLD, ksp, ierr)
         call KSPSetfromOptions(ksp, ierr)
         if (used) then
@@ -233,6 +234,7 @@ ccc PETSc BLOCK
         end if
         call KSPSetOperators(ksp,A,A,DIFFERENT_NONZERO_PATTERN,ierr)
         call KSPSolve(ksp, rhs, sol, ierr)
+cdebug        call VecView(sol, PETSC_VIEWER_STDOUT_WORLD, ierr)
         call KSPDestroy(ksp, ierr)
         call VecDestroy(rhs, ierr)
         call VecDestroy(sol, ierr)
