@@ -928,7 +928,7 @@ class Lithomop3d_setup(Component):
 	self.memorySize += self.numberVolumeElementNodes* \
                            self.numberVolumeElements*self.intSize
         self.pointerToIvfamily = lithomop3d.allocateInt(
-            5*self.numberVolumeElementFamilies)
+            6*self.numberVolumeElementFamilies)
         self.memorySize += 5*self.numberVolumeElementFamilies*self.intSize
 
         self.pointerToIvftmp = lithomop3d.allocateInt(
