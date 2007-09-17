@@ -35,12 +35,14 @@
 if __name__ == "__main__":
     
     # re-create the PYTHONPATH at 'configure' time
-    import sys
+    import os.path, sys, site
     path = '@PYTHONPATH@'.split(':')
     path.reverse()
-    for dir in path:
-        if dir:
-            sys.path.insert(1, dir)
+    for directory in path:
+        if directory:
+            directory = os.path.abspath(directory)
+            sys.path.insert(1, directory)
+            site.addsitedir(directory)
 
     # if we are embedding, insert the extension module in the
     # 'lithomop3d' package

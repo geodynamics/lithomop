@@ -21,6 +21,7 @@ lithomop3dmodule_la_SOURCES = $(sources)
 lithomop3dmodule_la_LDFLAGS = -module
 lithomop3dmodule_la_LIBADD = \
 	$(top_builddir)/lithomop3d/liblithomop3d/liblithomop3d.la \
+	$(PYTHON_EGG_LDFLAGS) \
 	$(PETSC_FORTRAN_LIB) \
 	$(PETSC_LIB) \
 	$(PETSC_CXX_LIB) \
@@ -28,6 +29,8 @@ lithomop3dmodule_la_LIBADD = \
 	-ljournal
 
 INCLUDES = $(PETSC_INCLUDE) $(PETSC_CXX_INCLUDE) -I$(PYTHON_INCDIR)
+AM_CPPFLAGS = $(PYTHON_EGG_CPPFLAGS)
+
 sources = \
 	array.cc \
 	array.h \

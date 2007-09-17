@@ -3,7 +3,7 @@
 # $Id: configure.ac,v 1.1 2005/08/24 22:45:51 leif Exp $
 
 AC_PREREQ(2.59)
-AC_INIT([Lithomop3d], [0.7.2], [cig-short@geodynamics.org])
+AC_INIT([Lithomop3d], [0.7.3], [cig-short@geodynamics.org])
 AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([lithomop3d/applications/lithomop3dapp.py])
 AC_CONFIG_HEADER([portinfo])
@@ -20,31 +20,33 @@ AC_ARG_WITH([embedding],
     [want_embedding=yes])
 AM_CONDITIONAL([COND_EMBEDDING], [test "$want_embedding" = yes])
 
-# Checks for programs.
+# Check for Python.
 AM_PATH_PYTHON([2.3])
 CIT_PYTHON_SYSCONFIG
-CIT_PATH_PETSC([2.3])
+
+# Check for Python modules and packages.
+CIT_PYTHON_EGG_SETUP
+
+# Check for PETSc.
+CIT_PATH_PETSC([2.3.3])
 CC=$PETSC_CC
-AC_PROG_CXX
 if test -z "$FC"; then
-    AC_CHECK_PROG(FC, $PETSC_FC, $PETSC_FC)
+    AC_PATH_PROG(FC, $PETSC_FC, $PETSC_FC)
     test -z "$FC" && AC_MSG_FAILURE([Fortran compiler $PETSC_FC (used to configure PETSc) not found in \$PATH])
 else
     want_FC=$FC; unset FC
-    AC_CHECK_PROG(FC, $want_FC, $want_FC)
+    AC_PATH_PROG(FC, $want_FC, $want_FC)
     test -z "$FC" && AC_MSG_FAILURE([Fortran compiler $want_FC not found in \$PATH])
 fi
+
+# Checks for programs.
+AC_PROG_CXX
 AC_PROG_FC
 F77=$FC
 FFLAGS=$FCFLAGS
 AC_PROVIDE([AC_PROG_F77])
 AC_FC_WRAPPERS
 AC_PROG_LIBTOOL
-
-# Checks for Python modules and packages.
-CIT_PATH_PYTHIA([0.8])
-PYTHONPATH="${pyexecdir}${PYTHONPATH:+:${PYTHONPATH}}"; export PYTHONPATH
-AC_SUBST([PYTHONPATH])
 
 # Set the language for the PETSc tests.
 AC_LANG(C++)
